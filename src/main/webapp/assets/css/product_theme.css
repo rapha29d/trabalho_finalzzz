@@ -1,0 +1,107 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28/05/2017, 13:27:44
+    Author     : raphael
+*/
+
+.navbar {
+
+    border-radius: 0;
+}
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #101010;
+    color: white;
+    padding: 15px;
+}
+
+.thumbnail:hover {
+    background: #f7f7f7;
+    border-style: outset;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+.thumbnail a > img {
+
+    height: 250px;
+    width: 137px;
+    border: solid 1px #cccccc;
+}
+.thumbnail {
+   white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  min-width: 250px;
+  font-family: 'Open Sans', sans-serif;
+  
+}
+
+.thumbnail img{
+   
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.sidebar-nav {
+    padding: 10px;
+}
+.nav.nav-list a {
+    padding: 5px 10px;
+}
+.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
+    background-color: #428BCA;
+    color: #FFFFFF;
+}
+
+.nav-header {
+    color: darkgrey;
+    font-weight: bold;
+}
+
+
+#teste:hover{
+    text-decoration: none;
+}
+
+#pr{
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+ .sp{
+                 white-space: nowrap; 
+                 max-width: 15em; 
+                 overflow: hidden;
+                 text-overflow: ellipsis; 
+            }
+
+
+            .priceft{
+                color:#ba5812;
+                
+                font-size:16px
+            }
+
+
+
+

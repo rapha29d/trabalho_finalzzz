@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/aplicacao">
+    <Resource 
+        name="jdbc/aplicacao"
+        type="javax.sql.DataSource"
+        auth="Container"
+        maxTotal="100"
+        maxIdle="30"
+        maxWaitMillis="10000"
+        username="admin"
+        password="12345"
+        driverClassName="com.mysql.jdbc.Driver"
+        jdbcUrl="jdbc:mysql://localhost:3307/aplicacao"
+        url="jdbc:mysql://localhost:3307/aplicacao"
+        factory="com.zaxxer.hikari.HikariJNDIFactory"
+    />
+</Context>

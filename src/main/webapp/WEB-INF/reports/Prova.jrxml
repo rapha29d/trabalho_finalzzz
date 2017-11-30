@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-11-27T01:00:45 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Prova" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4a622384-364f-4223-b29c-02178b502a1f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexao TEDS"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="645"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="341"/>
+	<parameter name="CODIGO" class="java.lang.Long"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT aplicacao.questao.codigo,
+	aplicacao.questao.pergunta,
+	aplicacao.questao.descricao,
+	aplicacao.questao.codigo_usuario,
+	aplicacao.questao.codigo_categoria,
+	aplicacao.prova_questao.codigo_prova,
+	aplicacao.prova_questao.codigo_questao
+FROM aplicacao.prova_questao,
+	aplicacao.questao
+WHERE 
+	 aplicacao.questao.codigo = aplicacao.prova_questao.codigo_questao 
+	 AND aplicacao.prova_questao.codigo_prova = $P{CODIGO}]]>
+	</queryString>
+	<field name="codigo" class="java.math.BigInteger"/>
+	<field name="pergunta" class="java.lang.String"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="codigo_usuario" class="java.math.BigInteger"/>
+	<field name="codigo_categoria" class="java.math.BigInteger"/>
+	<field name="codigo_prova" class="java.math.BigInteger"/>
+	<field name="codigo_questao" class="java.math.BigInteger"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="113" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement positionType="Float" x="0" y="0" width="550" height="20" uuid="a20dda52-7d7a-491f-8f2f-01aa13f12ebe"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}+" -  "+$F{pergunta}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="30" width="550" height="70" uuid="d585b143-8b78-45bc-a57d-4285709a5e00"/>
+				<subreportParameter name="CODIGO_QUESTAO">
+					<subreportParameterExpression><![CDATA[$F{codigo}.longValue()]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} +"SubProvaA.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>
