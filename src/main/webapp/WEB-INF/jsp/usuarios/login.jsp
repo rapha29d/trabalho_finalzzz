@@ -76,12 +76,12 @@
       <div class="card-body">
         <form name="loginform" action="" method="post"  role="form" data-toggle="validator" data-disable="false"  id="cpf_form">
           <div class="form-group">
-            <label for="exampleInputEmail1" >Usuario</label>
-            <input class="form-control" id="exampleInputEmail1" type="text" aria-describedby="emailHelp" placeholder="Entre com o Login" name="username">
+            <label for="login" >Usuario</label>
+            <input class="form-control" id="login" type="text" aria-describedby="emailHelp" placeholder="Entre com o Login" name="username">
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Senha</label>
-            <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Entre com a senha" name="password">
+            <label for="pwd">Senha</label>
+            <input class="form-control" id="pwd" type="password" placeholder="Entre com a senha" name="password">
           </div>
           
           <input type="submit" class="btn btn-primary btn-block" value="Entrar">

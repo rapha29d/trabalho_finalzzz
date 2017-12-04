@@ -30,7 +30,7 @@ CREATE TABLE `Prova` (
   `categorias` text,
   PRIMARY KEY (`codigo`),
   KEY `fk_Prova_usuario_idx` (`codigo_usuario`),
-  CONSTRAINT `fk_Prova_usuario` FOREIGN KEY (`codigo_usuario`) REFERENCES `usuario` (`codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Prova_usuario` FOREIGN KEY (`codigo_usuario`) REFERENCES `usuario` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -360,7 +360,7 @@ CREATE TABLE `usuario` (
   `senha` text,
   `email` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -369,7 +369,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (14,'Raphael','teste','MTIz','raphapaes_al1@hotmail.com'),(15,'Jaozim','teste2','MTIz','raphaknight44@gmail.com'),(16,'jao','teste123','MTIz','123@htoinai'),(17,'Raphael Paes Alves','adm','$shiro1$SHA-256$500000$TC4oRdH8gbuZtJKbLiEFTg==$dC9k7AdpYNuTJG0ggZf7WG8jEtIrCEQYsB4rjHK1CMM=','raphapaes_al@gmail.com'),(18,'Raphael Paes Alves','adm2','$shiro1$SHA-256$500000$ZSStlYeRXj1AzVov7y8aJg==$q9hHJW1UplJa9y+fpWHrYD2rH/5yr9nzRhiCVvpuZRQ=','raphaknight44@gmail.com'),(19,'Jao da Silva','adm3','$shiro1$SHA-256$500000$Fk7LiXwNbzy++35uIxx+5w==$9zAz1bPFyaEaCfnGhPlcrRTwwCW97MRMRZis2jQnUJQ=','jao@hotmail.com'),(20,'Invocation Array','morrigan','$shiro1$SHA-256$500000$uU6fIGAOXkj39Dvw2MMeUg==$qGly9q67JXfOEjd+PTH+9pHYtL5KRmJWzZACVVapNXM=','Array@hotmail.com'),(21,'6575',NULL,NULL,NULL),(22,'456',NULL,'$shiro1$SHA-256$500000$Gw7uWxNfh4t5dHtd1FcP+Q==$8LlkRcIfuixLugxcWDXeY5pb9rBh6QD6TT5x9z9KFUQ=','423@gssdf'),(23,'Joao Alves','adm4','$shiro1$SHA-256$500000$sSG4/Hws7IkWfN4agOLuDw==$NUWP40VKLthP1yLLw6XznhNGpT03gXkAoXZSjoqZ3Yg=','jao@gmail.com');
+INSERT INTO `usuario` VALUES (14,'Raphael','teste','MTIz','raphapaes_al1@hotmail.com'),(15,'Jaozim','teste2','MTIz','raphaknight44@gmail.com'),(16,'jao','teste123','MTIz','123@htoinai'),(17,'Raphael Paes Alves','adm','$shiro1$SHA-256$500000$TC4oRdH8gbuZtJKbLiEFTg==$dC9k7AdpYNuTJG0ggZf7WG8jEtIrCEQYsB4rjHK1CMM=','raphapaes_al@gmail.com'),(18,'Raphael Paes Alves','adm2','$shiro1$SHA-256$500000$ZSStlYeRXj1AzVov7y8aJg==$q9hHJW1UplJa9y+fpWHrYD2rH/5yr9nzRhiCVvpuZRQ=','raphaknight44@gmail.com'),(19,'Jao da Silva','adm3','$shiro1$SHA-256$500000$Fk7LiXwNbzy++35uIxx+5w==$9zAz1bPFyaEaCfnGhPlcrRTwwCW97MRMRZis2jQnUJQ=','jao@hotmail.com'),(21,'6575',NULL,NULL,NULL),(22,'456',NULL,'$shiro1$SHA-256$500000$Gw7uWxNfh4t5dHtd1FcP+Q==$8LlkRcIfuixLugxcWDXeY5pb9rBh6QD6TT5x9z9KFUQ=','423@gssdf'),(23,'Joao Alves','adm4','$shiro1$SHA-256$500000$sSG4/Hws7IkWfN4agOLuDw==$NUWP40VKLthP1yLLw6XznhNGpT03gXkAoXZSjoqZ3Yg=','jao@gmail.com'),(24,'teste','admteste','$shiro1$SHA-256$500000$HVT/MDx0rdMzAfoNP3jPrw==$o1vdUQ3+ELeoqF4gYzSvDGR66wxN11j04/muWCtLj4U=','teste@teste.com');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -385,8 +385,8 @@ CREATE TABLE `usuario_tem_papel` (
   `papel_idPapel` bigint(20) NOT NULL,
   PRIMARY KEY (`usuario_codigo`,`papel_idPapel`),
   KEY `fk_usuario_has_papel_papel1_idx` (`papel_idPapel`),
-  CONSTRAINT `fk_usuario_has_papel_papel1` FOREIGN KEY (`papel_idPapel`) REFERENCES `papel` (`idPapel`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usuario_tem_papel_1_usuario` FOREIGN KEY (`usuario_codigo`) REFERENCES `usuario` (`codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_usuario_has_papel_papel1` FOREIGN KEY (`papel_idPapel`) REFERENCES `papel` (`idPapel`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_usuario_tem_papel_1_usuario` FOREIGN KEY (`usuario_codigo`) REFERENCES `usuario` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -396,7 +396,7 @@ CREATE TABLE `usuario_tem_papel` (
 
 LOCK TABLES `usuario_tem_papel` WRITE;
 /*!40000 ALTER TABLE `usuario_tem_papel` DISABLE KEYS */;
-INSERT INTO `usuario_tem_papel` VALUES (17,1),(18,1),(19,1),(20,1),(21,1),(22,1),(23,1);
+INSERT INTO `usuario_tem_papel` VALUES (17,1),(18,1),(19,1),(21,1),(22,1),(23,1),(24,1);
 /*!40000 ALTER TABLE `usuario_tem_papel` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -409,4 +409,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-27 17:43:23
+-- Dump completed on 2017-12-03 13:51:27

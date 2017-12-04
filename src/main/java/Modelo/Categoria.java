@@ -20,6 +20,18 @@ public class Categoria {
     private List<Questao> questoes;
     private int qtdq;
 
+    public Categoria() {
+    }
+
+    public Categoria(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+    
+    
+
+    
+    
     public int getQtdq() {
         return qtdq;
     }

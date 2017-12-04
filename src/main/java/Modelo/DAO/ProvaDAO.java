@@ -85,7 +85,7 @@ public class ProvaDAO {
 
             int resultado = pstmt.executeUpdate();
             if (resultado == 1) {
-
+                System.out.println("A inserção foi feita corretamente.");
             } else {
                 System.out.println("A inserção não foi feita corretamente.");
             }

@@ -5,11 +5,19 @@
  */
 package Modelo.DAO;
 
+import Modelo.Categoria;
 import Modelo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -96,6 +104,44 @@ public class UsuarioDAO {
                 }
             }
         }
-    } 
+    }
+    
+    public int remover(Usuario usuario) throws SQLException{
+        
+        String remocao = "DELETE FROM usuario WHERE codigo = ?";
+        try (PreparedStatement pstmt = conexao.prepareStatement(remocao)) {
+            pstmt.setLong(1,usuario.getCodigo());
+            int remocoes = pstmt.executeUpdate();
+            if (remocoes == 1) {
+                System.out.println("Remoção efetuada com sucesso.");
+                return 1;
+            } else {
+                System.out.println("Não foi possível efetuar a remoção.");
+                return 0;
+            }
+        }
+       
+        
+    }
+    
+     public List<Usuario> listar() throws SQLException {
+        Usuario usuario;
+        List<Usuario> usuarios = new ArrayList<>();
+        String selecao = "select * from usuario";
+        try (Statement stmt = conexao.createStatement()) {
+            try (ResultSet rs = stmt.executeQuery(selecao)) {
+                while (rs.next()) {
+                   usuario=new Usuario();
+                   usuario.setCodigo(rs.getLong("codigo"));
+                   usuario.setNome(rs.getString("nome"));
+                   usuario.setLogin(rs.getString("login"));
+                   usuario.setSenha(rs.getString("senha"));
+                   usuario.setEmail(rs.getString("email"));
+                   usuarios.add(usuario);
+                }
+            }
+        }
+        return usuarios;
+    }
 
 }

@@ -157,6 +157,7 @@ public class CategoriaDAO {
             int remocoes = pstmt.executeUpdate();
             if (remocoes == 1) {
                 System.out.println("Remoção efetuada com sucesso.");
+               
             } else {
                 System.out.println("Não foi possível efetuar a remoção.");
             }

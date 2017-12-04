@@ -19,6 +19,9 @@ public class Questao {
     private Long codigo_usuario;
     private List<Alternativa> alternativas;
     
+    
+    
+    
 
     public Long getCodigo() {
         return codigo;

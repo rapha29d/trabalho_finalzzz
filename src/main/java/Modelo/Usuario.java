@@ -7,6 +7,7 @@ package Modelo;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
@@ -24,8 +25,25 @@ public class Usuario implements Serializable {
     private String email;
     private List<Categoria> categorias;
     private Prova prova;
-
+    
     public Usuario() {
+       
+    }
+
+    public Usuario(String nome,String login,String senha,String email) {
+        
+        this.login=login;
+        this.nome=nome;
+        this.senha=senha;
+        this.email=email;
+        
+    }
+    public Usuario(Long codigo,String nome,String login,String senha,String email) {
+        this.codigo=codigo;
+        this.login=login;
+        this.nome=nome;
+        this.senha=senha;
+        this.email=email;
         
     }
 
@@ -104,6 +122,58 @@ public class Usuario implements Serializable {
         categorias=null;
         prova=null;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.login);
+        hash = 97 * hash + Objects.hashCode(this.senha);
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.email);
+        hash = 97 * hash + Objects.hashCode(this.categorias);
+        hash = 97 * hash + Objects.hashCode(this.prova);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        if (!Objects.equals(this.login, other.login)) {
+            return false;
+        }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.categorias, other.categorias)) {
+            return false;
+        }
+        if (!Objects.equals(this.prova, other.prova)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
     
     
     

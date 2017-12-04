@@ -1,7 +1,10 @@
 package Modelo.DAO;
 
+import java.io.File;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
@@ -10,7 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class ConexaoFactory {
-
+    //HikariCP
     private static Context initContext;
     private static Context environmentContext;
     private static DataSource ds;
@@ -35,4 +38,6 @@ public class ConexaoFactory {
 
     private ConexaoFactory() {
     }
+    
+   
 }

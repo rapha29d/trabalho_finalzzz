@@ -23,13 +23,7 @@ public class DAOFactory {
         }
     }
      
-     public DisciplinaDAO criarDisciplinaDAO() {
-        if (conexao == null) {
-            throw new IllegalStateException("Abra uma conexão antes de criar um DAO.");
-        } else {
-            return new DisciplinaDAO(conexao);
-        }
-    }
+   
      
      public UsuarioDAO criarUsuarioDAO() {
         if (conexao == null) {
@@ -47,29 +41,7 @@ public class DAOFactory {
         }
     }
      
-     public FrequenciaDAO criarFrequenciaDAO() {
-        if (conexao == null) {
-            throw new IllegalStateException("Abra uma conexão antes de criar um DAO.");
-        } else {
-            return new FrequenciaDAO(conexao);
-        }
-    }
      
-     public Aluno_DisciplinaDAO criarAluno_DisciplinaDAO() {
-        if (conexao == null) {
-            throw new IllegalStateException("Abra uma conexão antes de criar um DAO.");
-        } else {
-            return new Aluno_DisciplinaDAO(conexao);
-        }
-    }
-     
-     public AlunoDAO criarAlunoDAO() {
-        if (conexao == null) {
-            throw new IllegalStateException("Abra uma conexão antes de criar um DAO.");
-        } else {
-            return new AlunoDAO(conexao);
-        }
-    } 
      public ProvaDAO criarProvaDAO() {
         if (conexao == null) {
             throw new IllegalStateException("Abra uma conexão antes de criar um DAO.");
@@ -87,6 +59,14 @@ public class DAOFactory {
     public void abrirConexao() throws SQLException {
         if (conexao == null) {
             conexao = ConexaoFactory.getConexao();
+        } else {
+            throw new IllegalStateException("A conexão já está aberta.");
+        }
+    }
+    
+    public void abrirConexaoTest() throws SQLException {
+        if (conexao == null) {
+            conexao = ConexaoFactoryTEST.getConexaoMySQL();
         } else {
             throw new IllegalStateException("A conexão já está aberta.");
         }
