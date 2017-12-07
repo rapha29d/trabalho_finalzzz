@@ -15,13 +15,9 @@ pipeline {
           }
         }
         stage('container') {
-          agent {
-            docker {
-              image 'rapha29c/alpine_mariadb'
-            }
-            
-          }
+          agent any
           steps {
+            sh 'sudo docker pull rapha29c/alpine_mariadb'
             sh 'sudo docker run -d -v $PWD/data:/data -p 3307:3306 --name mariadb rapha29c/alpine_mariadb'
           }
         }
