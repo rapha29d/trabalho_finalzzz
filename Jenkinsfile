@@ -23,7 +23,7 @@ pipeline {
             
           }
           steps {
-            sh 'start.sh'
+            sh './mariadb/start.sh'
           }
         }
       }
