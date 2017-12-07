@@ -23,7 +23,7 @@ pipeline {
             
           }
           steps {
-            echo 'teste'
+            sh 'start.sh'
           }
         }
       }
