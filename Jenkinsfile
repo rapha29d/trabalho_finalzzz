@@ -18,12 +18,12 @@ pipeline {
           agent {
             docker {
               image 'rapha29c/alpine_mariadb'
-              args '-d -v $PWD/data:/data -p 3307:3306'
+              args '-d -v $PWD/data:/data -p 3307:3306 --name mariadb'
             }
             
           }
           steps {
-            sh './start.sh'
+            echo 'teste'
           }
         }
       }
