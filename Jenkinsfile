@@ -8,9 +8,25 @@ pipeline {
   }
   stages {
     stage('Build') {
-      steps {
-        sh 'mvn -B -DskipTests clean package'
-        sh 'mvn -Dmaven.test.failure.ignore=true install'
+      parallel {
+        stage('Build') {
+          steps {
+            sh 'mvn -B -DskipTests clean package'
+            sh 'mvn -Dmaven.test.failure.ignore=true install'
+          }
+        }
+        stage('DB') {
+          agent {
+            docker {
+              image 'rapha29c:alpine_mariadb'
+              args '-d -v $PWD/data:/data -p 3307:3306'
+            }
+            
+          }
+          steps {
+            echo 'db'
+          }
+        }
       }
     }
     stage('Test') {
