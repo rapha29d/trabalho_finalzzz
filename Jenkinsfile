@@ -21,7 +21,7 @@ pipeline {
         
       }
       steps {
-        sh 'docker login -u rapha29c -p b90b7fa5\''
+        sh 'docker login -u rapha29c -p b90b7fa5'
         sh 'docker pull rapha29c/alpine_mariadb'
         sh 'docker run -d -v $PWD/data:/data -p 3307:3306 --name mariadb rapha29c/alpine_mariadb'
       }
