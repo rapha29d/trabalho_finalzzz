@@ -16,14 +16,14 @@ pipeline {
         }
         stage('Database') {
      
-          steps {
-            node {
+         
+            node('merda') {
               
                 docker.image('rapha29c/alpine_mariadb').withRun('-d -v $PWD/data:/data -p 3307:3306') { c ->
               
                 }
             }
-          }
+        
         }
       }
     }
