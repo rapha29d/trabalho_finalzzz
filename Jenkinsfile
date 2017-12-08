@@ -12,6 +12,21 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
+           
+
+       stage ('Run Application') {
+        try {
+          // Start database container here
+         sh 'docker run -d -v $PWD/data:/data -p 3307:3306 --name mariadb rapha29c/alpine_mariadb'
+
+         
+        } catch (error) {
+        } finally {
+          // Stop and remove database container here
+          //sh 'docker-compose stop db'
+          //sh 'docker-compose rm db'
+        }
+      }
          stage('Test') {
             steps {
                 sh 'mvn test'
