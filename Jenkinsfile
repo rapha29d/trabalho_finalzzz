@@ -4,7 +4,7 @@ pipeline {
             image 'maven:3-alpine' 
             args '-v /root/.m2:/root/.m2' 
         }
-        docker {
+       docker {
             image 'rapha29c/alpine_mariadb' 
             args '-d -v $PWD/data:/data -p 3307:3306 --name mariadb rapha29c/alpine_mariadb' 
         }
@@ -16,7 +16,6 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
-       
          stage('Test') {
             steps {
                 sh 'mvn test'
