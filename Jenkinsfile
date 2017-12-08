@@ -15,15 +15,14 @@ pipeline {
           }
         }
         stage('Database') {
-          agent {
-            docker {
-              image 'rapha29c/alpine_mariadb'
-              args '-d -v $PWD/data:/data -p 3307:3306'
-            }
-            
-          }
+     
           steps {
-            node(label: 'teste')
+            node {
+              
+                docker.image('rapha29c/alpine_mariadb').withRun('-d -v $PWD/data:/data -p 3307:3306') { c ->
+              
+                }
+            }
           }
         }
       }
