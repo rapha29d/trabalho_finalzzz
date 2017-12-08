@@ -21,7 +21,6 @@ pipeline {
         
       }
       steps {
-        sh 'login -u rapha29c -p b90b7fa5'
         sh 'pull rapha29c/alpine_mariadb'
         sh 'run -d -v $PWD/data:/data -p 3307:3306 --name mariadb rapha29c/alpine_mariadb'
       }
