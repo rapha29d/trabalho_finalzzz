@@ -6,7 +6,8 @@ pipeline {
         }
        docker {
             image 'rapha29c/alpine_mariadb' 
-            args '-d -v $PWD/data:/data -p 3307:3306 --name mariadb rapha29c/alpine_mariadb' 
+            args '-d -v $PWD/data:/data -p 3307:3306'
+            label 'mariadb' 
         }
     }
 
