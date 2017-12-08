@@ -1,4 +1,19 @@
 pipeline {
+     agent {
+        docker {
+            image 'rapha29c/alpine_mariadb' 
+            args '-d -v $PWD/data:/data -p 3307:3306' 
+        }
+    }
+
+    stages {
+        stage('database') { 
+            steps {
+                echo 'database' 
+            }
+        }
+       
+    }
     agent {
         docker {
             image 'maven:3-alpine' 
