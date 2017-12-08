@@ -10,7 +10,7 @@ pipeline {
         
       }
       steps {
-        echo 'merda'
+        echo "merda"
       }
     }
     stage('Maven') {
