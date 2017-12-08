@@ -1,7 +1,7 @@
 pipeline {
   agent none
   stages {
-     stage('Data-base') {
+    stage('Data-base') {
       agent {
         docker {
           image 'rapha29c/alpine_mariadb'
@@ -10,10 +10,10 @@ pipeline {
         
       }
       steps {
-        echo "merda"
+        echo 'merda'
       }
     }
-    stage('Maven') {
+    stage('Back-end') {
       agent {
         docker {
           image 'maven:3-alpine'
@@ -24,6 +24,9 @@ pipeline {
       steps {
         sh 'mvn -B -DskipTests clean package'
       }
+    }
+    
+    stage('Test') {
       steps {
         sh 'mvn test'
       }
@@ -34,11 +37,11 @@ pipeline {
         }
         
       }
-     steps {
+    }
+    stage('Deliver') {
+      steps {
         sh './jenkins/scripts/deliver.sh'
       }
     }
-   
-   
   }
 }
