@@ -244,7 +244,7 @@
                    
                     <div class="row">
                         <c:forEach  items="${provas}" var="prova" varStatus="i">
-                            <div class="col-sm-4 col-lg-3 col-md-4" style="margin-top: 5%">
+                            <div class="col-sm-4" style="margin-top: 5%">
                                 <div class="card">
                                     <div class="card-block">
                                         <h5 class="card-title">ID ${prova.codigo}</h5>
