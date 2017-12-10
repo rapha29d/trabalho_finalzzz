@@ -1,8 +1,8 @@
 pipeline {
     agent {
         docker {
-            image 'rapha29c/alpine_mariadb' 
-            args '-d -v $PWD/data:/data -p 3307:3306' 
+            image 'maven:3-alpine' 
+            args '-v /root/.m2:/root/.m2' 
         }
     }
 
