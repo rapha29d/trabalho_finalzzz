@@ -1,31 +1,43 @@
-pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
-        }
+node {
+  checkout scm
+  env.PATH = "${tool 'Maven3'}/bin:${env.PATH}"
+  stage('Package') {
+    dir('webapp') {
+      sh 'mvn clean package -DskipTests'
     }
+  }
 
-    stages {
-        stage('Build') { 
-            steps {
-                sh 'mvn -B -DskipTests clean package' 
-            }
-        }
-         stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                  junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-         stage('Deliver') { 
-            steps {
-                sh './jenkins/scripts/deliver.sh' 
-            }
-        }
+  stage('Create Docker Image') {
+    dir('webapp') {
+      docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}")
     }
+  }
+
+  stage ('Run Application') {
+    try {
+     
+
+     
+      sh "DB=`docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mariadb`"
+      sh "docker run -e DB_URI=$DB rapha29c/aplicacao:${env.BUILD_NUMBER}"
+
+     
+    } catch (error) {
+    } finally {
+     
+    }
+  }
+
+  stage('Run Tests') {
+    try {
+      dir('webapp') {
+        sh "mvn test"
+        docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
+      }
+    } catch (error) {
+
+    } finally {
+      junit '**/target/surefire-reports/*.xml'
+    }
+  }
 }
