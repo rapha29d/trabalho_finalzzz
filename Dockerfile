@@ -29,7 +29,7 @@ RUN chmod 600 ${CATALINA_HOME}/webapps/manager/WEB-INF/web.xml
 
 #Permite o acesso de outro servidor ao gerenciador do Tomcat
 COPY context.xml $CATALINA_HOME/webapps/manager/META-INF/context.xml
-COPY target/taplicacao-1.0-SNAPSHOT.war /opt/tomcat/webapps/aplicacao.war
+COPY target/aplicacao-1.0-SNAPSHOT.war /opt/tomcat/webapps/aplicacao.war
 
 EXPOSE 8080
 EXPOSE 8009
