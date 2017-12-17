@@ -29,12 +29,13 @@ node {
     try {
     
         sh "mvn test"
-        docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
+       
      
     } catch (error) {
 
     } finally {
       junit '**/target/surefire-reports/*.xml'
+      docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
     }
   }
 }
