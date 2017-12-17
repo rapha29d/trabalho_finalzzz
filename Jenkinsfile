@@ -8,9 +8,9 @@ node {
   }
 
   stage('Create Docker Image') {
-    dir('webapp') {
+  
       docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}")
-    }
+    
   }
 
   stage ('Run Application') {
