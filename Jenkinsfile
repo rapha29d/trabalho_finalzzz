@@ -44,10 +44,10 @@ node {
             final def SUBJECT = "${env.JOB_NAME} ${env.BRANCH_NAME} - Build #${env.BUILD_NUMBER} - FAILED!"
             final def CONTENT = "Check console output at ${env.BUILD_URL} to view the results."
             if (RECIPIENTS != null && !RECIPIENTS.isEmpty()) {
-                mail to: RECIPIENTS, replyTo: "raphapaes_al@hotmail.com", subject: SUBJECT, body: CONTENT
+                mail to: RECIPIENTS, replyTo: "raphapaesal@gmail.com", subject: SUBJECT, body: CONTENT
             } else {
 
-                mail to: "jenkins-admins", replyTo: "raphapaes_al@hotmail.com", subject: SUBJECT, body: CONTENT
+                mail to: "jenkins-admins", replyTo: "raphapaesal@gmail.com", subject: SUBJECT, body: CONTENT
             }
 
 
