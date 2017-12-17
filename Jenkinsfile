@@ -33,7 +33,7 @@ node {
   stage('Run Tests') {
     try {
      
-        sh "docker run -d -v $PWD/data:/data -p 3307:3306 --name mariadb rapha29c/alpine_mariadb"
+        sh "docker run -d -v $PWD/data:/data -p 3307:3306 --name mariadb rapha29c/alpine_mariadb:${env.BUILD_NUMBER}"
         sh "mvn test"
         docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
      
