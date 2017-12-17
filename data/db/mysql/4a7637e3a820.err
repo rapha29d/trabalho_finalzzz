@@ -1,0 +1,36 @@
+171108 18:04:03 mysqld_safe Starting mysqld daemon with databases from /data/db/mysql
+2017-11-08 18:04:03 139830939392808 [Note] /usr/bin/mysqld (mysqld 10.1.26-MariaDB) starting as process 317 ...
+2017-11-08 18:04:03 7f2ced789b28 InnoDB: Warning: Using innodb_additional_mem_pool_size is DEPRECATED. This option may be removed in future releases, together with the option innodb_use_sys_malloc and with the InnoDB's internal memory allocator.
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: Using mutexes to ref count buffer pool pages
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: The InnoDB memory heap is disabled
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: Compressed tables use zlib 1.2.11
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: Using Linux native AIO
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: Using SSE crc32 instructions
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: Initializing buffer pool, size = 800.0M
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: Completed initialization of buffer pool
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: Highest supported file format is Barracuda.
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: 128 rollback segment(s) are active.
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB: Waiting for purge to start
+2017-11-08 18:04:03 139830939392808 [Note] InnoDB:  Percona XtraDB (http://www.percona.com) 5.6.36-82.1 started; log sequence number 1616826
+2017-11-08 18:04:04 139829860354736 [Note] InnoDB: Dumping buffer pool(s) not yet started
+2017-11-08 18:04:04 139830939392808 [Note] Plugin 'FEEDBACK' is disabled.
+2017-11-08 18:04:04 139830939392808 [Note] Server socket created on IP: '::'.
+2017-11-08 18:04:04 139830939392808 [Warning] 'user' entry 'root@4a7637e3a820' ignored in --skip-name-resolve mode.
+2017-11-08 18:04:04 139830939392808 [Warning] 'user' entry '@4a7637e3a820' ignored in --skip-name-resolve mode.
+2017-11-08 18:04:04 139830939392808 [Warning] 'proxies_priv' entry '@% root@4a7637e3a820' ignored in --skip-name-resolve mode.
+2017-11-08 18:04:04 139830939392808 [Note] /usr/bin/mysqld: ready for connections.
+Version: '10.1.26-MariaDB'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MariaDB Server
+2017-11-08 18:04:13 139829851040432 [Warning] 'proxies_priv' entry '@% root@4a7637e3a820' ignored in --skip-name-resolve mode.
+2017-11-08 18:04:13 139829851040432 [Warning] 'proxies_priv' entry '@% root@4a7637e3a820' ignored in --skip-name-resolve mode.
+2017-11-08 18:04:13 139829851040432 [Note] /usr/bin/mysqld: Normal shutdown
+
+2017-11-08 18:04:13 139829851040432 [Note] Event Scheduler: Purging the queue. 0 events
+2017-11-08 18:04:13 139829860731568 [Note] InnoDB: FTS optimize thread exiting.
+2017-11-08 18:04:13 139829851040432 [Note] InnoDB: Starting shutdown...
+2017-11-08 18:04:14 139829851040432 [Note] InnoDB: Waiting for page_cleaner to finish flushing of buffer pool
+2017-11-08 18:04:15 139829851040432 [Note] InnoDB: Shutdown completed; log sequence number 1616836
+2017-11-08 18:04:15 139829851040432 [Note] /usr/bin/mysqld: Shutdown complete
+
+171108 18:04:15 mysqld_safe mysqld from pid file /var/run/mysqld/mysqld.pid ended
