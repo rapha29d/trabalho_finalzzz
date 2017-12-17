@@ -3,6 +3,18 @@ pipeline {
   stages {
     stage('build') {
       parallel {
+        stage('DataBase') {
+          agent {
+            docker {
+              args '-d -v $PWD/data:/data -p 3307:3306'
+              image 'rapha29c/alpine_mariadb'
+            }
+            
+          }
+          steps {
+            echo 'database'
+          }
+        }  
         stage('build') {
           agent {
             docker {
@@ -16,18 +28,7 @@ pipeline {
             sh 'mvn test'
           }
         }
-        stage('DataBase') {
-          agent {
-            docker {
-              args '-d -v $PWD/data:/data -p 3307:3306 --name mariadb'
-              image 'rapha29c/alpine_mariadb'
-            }
-            
-          }
-          steps {
-            echo 'database'
-          }
-        }
+        
       }
     }
   }
