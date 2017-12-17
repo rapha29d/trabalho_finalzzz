@@ -32,13 +32,27 @@ node {
 
   stage('Run Tests') {
     try {
-       dir('alpine_mariadb') {
-        sh "docker run -d -v $PWD/data:/data -p 3307:3306 --name mariadb rapha29c/alpine_mariadb:${env.BUILD_NUMBER}"
-       }
+      
         sh "mvn test"
         docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
      
     } catch (error) {
+          final def RECIPIENTS = emailextrecipients([
+                [$class: 'DevelopersRecipientProvider'],
+                [$class: 'CulpritsRecipientProvider']
+            ])
+            final def SUBJECT = "${env.JOB_NAME} ${env.BRANCH_NAME} - Build #${env.BUILD_NUMBER} - FAILED!"
+            final def CONTENT = "Check console output at ${env.BUILD_URL} to view the results."
+            if (RECIPIENTS != null && !RECIPIENTS.isEmpty()) {
+                mail to: RECIPIENTS, replyTo: "raphapaes_al@hotmail.com", subject: SUBJECT, body: CONTENT
+            } else {
+
+                mail to: "jenkins-admins", replyTo: "raphapaes_al@hotmail.com", subject: SUBJECT, body: CONTENT
+            }
+
+
+            /* Must re-throw exception to propagate error */
+            throw error
 
     } finally {
       junit '**/target/surefire-reports/*.xml'
