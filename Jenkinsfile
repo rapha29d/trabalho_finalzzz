@@ -7,10 +7,15 @@ node {
    
   }
 
-  stage('Create Docker Image') {
+  stage('Create Docker Image APP') {
   
       docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}")
     
+  }
+  stage('Create Docker Image DataBase') {
+    dir('alpine_mariadb') {
+      docker.build("rapha29c/alpine_mariadb:${env.BUILD_NUMBER}")
+    }
   }
 
   stage ('Run Application') {
@@ -29,13 +34,13 @@ node {
     try {
     
         sh "mvn test"
-       
+        docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
      
     } catch (error) {
 
     } finally {
       junit '**/target/surefire-reports/*.xml'
-      docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
+      
     }
   }
 }
