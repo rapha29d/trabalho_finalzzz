@@ -28,6 +28,20 @@ pipeline {
             echo 'database'
           }
         }
+        stage('teste') {
+          agent {
+            node {
+              label 'zzz'
+            }
+            
+          }
+          steps {
+            node(label: 'sdf') {
+              echo 'bnghj'
+            }
+            
+          }
+        }
       }
     }
   }
