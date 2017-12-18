@@ -37,26 +37,29 @@ node {
         docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
      
     } catch (error) {
-          final def RECIPIENTS = emailextrecipients([
-                [$class: 'DevelopersRecipientProvider'],
-                [$class: 'CulpritsRecipientProvider']
-            ])
-            final def SUBJECT = "${env.JOB_NAME} ${env.BRANCH_NAME} - Build #${env.BUILD_NUMBER} - FAILED!"
-            final def CONTENT = "Check console output at ${env.BUILD_URL} to view the results."
-            if (RECIPIENTS != null && !RECIPIENTS.isEmpty()) {
-                mail to: RECIPIENTS, replyTo: "raphapaesal@gmail.com", subject: SUBJECT, body: CONTENT
-            } else {
-
-                mail to: "jenkins-admins", replyTo: "raphapaesal@gmail.com", subject: SUBJECT, body: CONTENT
-            }
-
-
-            /* Must re-throw exception to propagate error */
-            throw error
+          
 
     } finally {
       junit '**/target/surefire-reports/*.xml'
       
     }
   }
+   post {
+        changed {
+            script {
+                if (currentBuild.currentResult == 'UNSTABLE') { 
+                   
+                    emailext subject: '$DEFAULT_SUBJECT',
+                        body: '$DEFAULT_CONTENT',
+                        recipientProviders: [
+                            [$class: 'CulpritsRecipientProvider'],
+                            [$class: 'DevelopersRecipientProvider'],
+                            [$class: 'RequesterRecipientProvider']
+                        ], 
+                        replyTo: '$DEFAULT_REPLYTO',
+                        to: '$DEFAULT_RECIPIENTS'
+                }
+            }
+        }
+    }
 }
