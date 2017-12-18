@@ -35,7 +35,7 @@ node {
     try {
       
         sh "mvn test"
-        docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
+      
      
     } catch (error) {
           
@@ -44,6 +44,22 @@ node {
       junit '**/target/surefire-reports/*.xml'
       //sh 'docker login -u rapha29c -p b90b7fa5'
       //docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
+    }
+  }
+   stage('Notification') {
+    try {
+       mail (to: 'raphapaesal@gmail.com',
+         subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) is waiting for input",
+         body: "Please go to ${env.BUILD_URL}.");
+         input 'Ready to go?';  
+       
+      
+     
+    } catch (error) {
+          
+
+    } finally {
+         
     }
   }
  
