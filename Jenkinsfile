@@ -27,6 +27,8 @@ node {
 
     } catch (error) {
     } finally {
+       sh 'docker-compose stop mariadb'
+       sh 'docker-compose rm mariadb'
       
     }
   }
@@ -49,7 +51,7 @@ node {
     try {
       //sh 'docker login -u rapha29c -p b90b7fa5'
       //docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
-    
+      //docker.build("rapha29c/alpine_mariadb:${env.BUILD_NUMBER}").push()
       
      
     } catch (error) {
