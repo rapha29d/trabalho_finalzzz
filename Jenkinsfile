@@ -41,38 +41,26 @@ node {
 
     } finally {
       junit '**/target/surefire-reports/*.xml'
-      
+      notifyStarted()
     }
   }
-   post {
-        changed {
-            script {
-                if (currentBuild.currentResult == 'UNSTABLE') { 
-                   
-                    emailext subject: '$DEFAULT_SUBJECT',
-                        body: '$DEFAULT_CONTENT',
-                        recipientProviders: [
-                            [$class: 'CulpritsRecipientProvider'],
-                            [$class: 'DevelopersRecipientProvider'],
-                            [$class: 'RequesterRecipientProvider']
-                        ], 
-                        replyTo: '$DEFAULT_REPLYTO',
-                        to: '$DEFAULT_RECIPIENTS'
-                }else{
-                      if (currentBuild.currentResult == 'FAILURE') { 
-                   
-                    emailext subject: '$DEFAULT_SUBJECT',
-                        body: '$DEFAULT_CONTENT',
-                        recipientProviders: [
-                            [$class: 'CulpritsRecipientProvider'],
-                            [$class: 'DevelopersRecipientProvider'],
-                            [$class: 'RequesterRecipientProvider']
-                        ], 
-                        replyTo: '$DEFAULT_REPLYTO',
-                        to: '$DEFAULT_RECIPIENTS'
-                     }
-                }
-            }
-        }
-    }
+ 
+}
+
+def notifyStarted() {
+  // send to Slack
+  slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+ 
+  // send to HipChat
+  hipchatSend (color: 'YELLOW', notify: true,
+      message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+    )
+ 
+  // send to email
+  emailext (
+      subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      body: """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+        <p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>""",
+      recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+    )
 }
