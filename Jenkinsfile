@@ -42,10 +42,23 @@ node {
 
     } finally {
       junit '**/target/surefire-reports/*.xml'
-      //sh 'docker login -u rapha29c -p b90b7fa5'
-      //docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
+     
     }
   }
+  stage('Push Images') {
+    try {
+      //sh 'docker login -u rapha29c -p b90b7fa5'
+      //docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
+      //docker.build("rapha29c/alpine_mariadb:${env.BUILD_NUMBER}").push()
+      
+     
+    } catch (error) {
+          
+
+    } finally {
+         
+    }
+   }
    stage('Notification') {
     try {
        mail (to: 'raphapaesal@gmail.com',
