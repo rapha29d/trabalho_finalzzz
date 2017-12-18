@@ -41,8 +41,8 @@ node {
 
     } finally {
       junit '**/target/surefire-reports/*.xml'
-      sh 'docker login -u rapha29c -p b90b7fa5'
-      docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
+      //sh 'docker login -u rapha29c -p b90b7fa5'
+      //docker.build("rapha29c/aplicacao:${env.BUILD_NUMBER}").push()
     }
   }
  
